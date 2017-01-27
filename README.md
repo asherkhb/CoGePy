@@ -1,1 +1,1 @@
-# PyCoGe_API
+# CoGe Python API

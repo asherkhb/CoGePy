@@ -1,6 +1,6 @@
 __author__ = 'senorrift'
 
-import coge
+from coge import coge
 
 ## Example: help ##
 #coge.help()
