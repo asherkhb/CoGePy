@@ -1,5 +1,9 @@
-API_BASE = 'https://geco.iplantcollaborative.org/coge/api/v1/'
-AUTH = False
+API_BASE = 'https://genomevolution.org/coge/api/v1/'
+DEV_BASE = 'https://geco.iplantcollaborative.org/coge/api/v1/'
 
-PARAMS = {'username': 'USER',
-          'token': 'TOKEN'}
+ENDPOINTS = {'organisms_search': 'organisms/search/',
+             'organisms_fetch': 'organisms/',
+             'organisms_add': 'organisms',
+             'genomes_search': 'genomes/search/',
+             'genomes_fetch': 'genomes/',
+             'experiments_search': 'experiments/search/'}
