@@ -1,10 +1,11 @@
 import requests
 import json
+from datetime import datetime
 
 from coge import Organism
 import utils
 import errors
-from constants import DEV_BASE, ENDPOINTS
+from constants import API_BASE, ENDPOINTS
 
 
 def search(term, fetch=False, username=None, token=None):
@@ -17,7 +18,7 @@ def search(term, fetch=False, username=None, token=None):
     :return: List of search results, stored as Organisms. Empty list if no results.
     """
     # Define Search URL
-    search_url = DEV_BASE + ENDPOINTS["organisms_search"] + term
+    search_url = API_BASE + ENDPOINTS["organisms_search"] + term
 
     # Submit search query. Use authentication if provided.
     if username and token:
@@ -59,15 +60,12 @@ def fetch(id_or_list_of_ids, username=None, token=None):
         try:
             results.append(Organism(id=organism_id, fetch=True, username=username, token=token))
         except errors.InvalidResponseError:
-            print("%s - WARNING - Unable to fetch organism id%d" % organism_id)
+            print("%s - WARNING - Unable to fetch organism id%d" % (datetime.now(), organism_id))
     # Return either single result, or list of results.
     if len(results) == 1:
         return results[0]
     else:
         return results
-
-
-
 
 
 # def fetch(id_or_list_of_ids):
@@ -121,7 +119,7 @@ def fetch(id_or_list_of_ids, username=None, token=None):
 #                'description': Organism.description}
 #
 #     # Submit PUT request.
-#     response = requests.put(DEV_BASE + ENDPOINTS["organisms_add"],
+#     response = requests.put(API_BASE + ENDPOINTS["organisms_add"],
 #                             params=PARAMS,
 #                             headers={'Content-Type': 'application/json'},
 #                             data=json.dumps(payload))

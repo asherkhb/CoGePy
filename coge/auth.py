@@ -1,26 +1,35 @@
-PARAMS = {}
-
+import errors
 
 class AuthToken(object):
 
-    def __init__(self, username, password):
+    def __init__(self, username, token=None, password=None):
         self.username = username
-        self.token = self.new_token(username, password)
+
+        if password and not token:
+            # self.token = self.new_token(username, password)
+            print("[CoGe API] %s - ERROR - Password authentication not yet supported. Please specify a token.")
+            raise errors.AuthError("Method not supported.")
+        elif token:
+            self.token = token
+        else:
+            print("[CoGe API] %s - ERROR - A valid token or user password must be specified to create an AuthToken.")
+            raise errors.AuthError("Invalid AuthToken instantiation.")
 
     def __repr__(self):
-        return "< AUTHENTICATION >"
+        return "< AUTHENTICATION TOKEN >"
 
+    # TODO: Complete these functions...
     @staticmethod
     def new_token(username, password):
-        token = ''
-        return token
+        # token = ''
+        # return token
+        raise NotImplementedError
 
     def validate_token(self):
-        token = self.token
         # Check token.
         # Refresh if necessary.
         # Return token.
-        self.token = token
+        raise NotImplementedError
 
     def refresh_token(self):
         raise NotImplementedError

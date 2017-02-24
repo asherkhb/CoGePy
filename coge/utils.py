@@ -5,6 +5,8 @@ def printstatement(text):
 def valid_response(status_code):
     if status_code == 200:
         return True
+    elif status_code == 201:
+        return True
 
 
 def report_invalid_response(response):

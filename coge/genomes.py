@@ -4,7 +4,7 @@ import json
 from coge import Genome
 import utils
 import errors
-from constants import DEV_BASE, ENDPOINTS
+from constants import API_BASE, ENDPOINTS
 
 
 def search(term, fetch=False, username=None, token=None):
@@ -17,7 +17,7 @@ def search(term, fetch=False, username=None, token=None):
     :return: List of search results, stored as python dictionary. Empty list if no results.
     """
     # Define Search URL.
-    search_url = DEV_BASE + ENDPOINTS["genomes_search"] + term
+    search_url = API_BASE + ENDPOINTS["genomes_search"] + term
 
     # Submit search query. Use authentication if provided.
     if username and token:
@@ -44,7 +44,7 @@ def search(term, fetch=False, username=None, token=None):
 def fetch(id_or_list_of_ids, username=None, token=None):
 
     # Define Fetch URL.
-    fetch_url = DEV_BASE + ENDPOINTS["genomes_fetch"]
+    fetch_url = API_BASE + ENDPOINTS["genomes_fetch"]
 
     # Convert single ID to list.
     if type(id_or_list_of_ids) is not list:
