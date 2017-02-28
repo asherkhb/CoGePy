@@ -618,7 +618,6 @@ class Job(object):
             raise errors.InvalidResponseError(response)
 
         response_data = json.loads(response.text)
-        pprint(response_data)
         return response_data
 
     def update_status(self):
