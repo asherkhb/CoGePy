@@ -14,7 +14,7 @@ def main():
     # # ------------------------------------------- # #
 
     # # Create an authentication object.
-    my_auth = coge.auth.AuthToken(username='asherkhb', token='ec4702045b0cae36acb2c12fc7a57c')
+    my_auth = coge.auth.AuthToken(username='', token='')
 
     # my_auth = coge.auth.AuthToken(username='USERNAME', password='PASSWORD')
 
@@ -28,36 +28,55 @@ def main():
     # # ------------------------------------------- # #
 
     # Fetch experiment.
-    # my_exp = coge.Experiment(id=10115, authtoken=my_auth)
+    # my_exp = coge.Experiment(id=10115, auth=my_auth)
     # print(my_exp)
 
-    # Load experiment(s).
-    my_experiments = pd.read_csv('experiments.tsv', sep='\t', header=0)
+    # # Load experiment(s).
+    # my_experiments = pd.read_csv('experiments.tsv', sep='\t', header=0)
+    #
+    # # Define some basic analysis parameters.
+    # my_parameters = [{'read_params': {'read_type': 'paired', "encoding": 33}},
+    #                  {'trimming_params': {'trimmer': 'cutadapt'}},
+    #                  {'incorrect_params': []}]
+    # # Single experiment.
+    # exp_info = my_experiments.ix[0]
+    # my_exp = coge.Experiment(name=exp_info['name'],
+    #                          description=exp_info['description'],
+    #                          version=exp_info['version'],
+    #                          source=exp_info['source'],
+    #                          restricted=True,
+    #                          genome_id=exp_info['genome_id'],
+    #                          notebook_id=exp_info['notebook_id'],
+    #                          tags=[t for t in exp_info['tags'].split(',')],
+    #                          source_data={'type': 'irods', 'path': exp_info['source_data']},
+    #                          analysis_parameters=my_parameters)
+    # my_exp.add(auth=my_auth)
 
-    # Single experiment.
-    exp_info = my_experiments.ix[0]
-    my_exp = coge.Experiment(name=exp_info['name'],
-                             description=exp_info['description'],
-                             version=exp_info['version'],
-                             source=exp_info['source'],
-                             restricted=True,
-                             genome_id=exp_info['genome_id'],
-                             notebook_id=exp_info['notebook_id'],
-                             tags=[t for t in exp_info['tags'].split(',')],
-                             source_data={'type': 'irods', 'path': exp_info['source_data']})
-    my_exp.add(auth=my_auth)
+    # Bulk loading experiments.
+    # experiment_objs = []
+    # for exp in my_experiments.iterrows():
+    #    experiment = coge.Experiment()
+
+    # Update an experiment.
+    my_exp = coge.Experiment(id=9012, auth=my_auth)
+    print(my_exp.name)
+    my_exp.name = 'New Name!'
+    my_exp.description = "A fun, updated description to tell about my experiment."
+    update_status = my_exp.update(update_properties=['name', 'description'], auth=my_auth)
+    print("Update success: %s" % str(update_status))
+
+    # # Delete experiment
+    # my_exp = coge.Experiment(id=9012, auth=my_auth)
+    # my_exp.delete(auth=my_auth)
 
     # # ------------------------------------------- # #
     # # JOBS
     # # ------------------------------------------- # #
-    my_job = coge.Job(id=44285)
-    print(my_job.status)
+    #my_job = coge.Job(id=44285)
+    #print(my_job.status)
 
 
-    # Bulk loader
-    #experiment_objs = []
-    #for exp in my_experiments.iterrows():
-    #    experiment = coge.Experiment()
+
 
     # # ------------------------------------------- # #
     # # SEARCHES

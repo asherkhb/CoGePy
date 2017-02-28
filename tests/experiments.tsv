@@ -1,0 +1,3 @@
+name	description	version	source	restricted	genome_id	notebook_id	tags	additional_metadata	source_data
+test1	Test data for API 1	1	python_api	True	16911	1628	test,api	{"type": "note", "text": "Just a test"}	/iplant/home/asherkhb/coge_data/test_ecoli.fastq
+test2	Test data for API 2	1	python_api	True	16911	1628	test,api	[{"type": "note", "text": "Just a test"}, {"type": "note", "text": "Still just a test"}]	/iplant/home/asherkhb/coge_data/test2_ecoli.fastq
