@@ -67,6 +67,9 @@ def bulk_load(list_of_Experiment_objects, auth=None, task_limit=2):
             else:
                 failed.append(exp)
         else:
+            # Wait 60 seconds to space out checks.
+            sleep(60)
+            
             # Check if jobs are 'Completed', if so mark as complete & queue for removal from running tasks list.
             remove = []
             for r in running:
@@ -84,11 +87,13 @@ def bulk_load(list_of_Experiment_objects, auth=None, task_limit=2):
             # Remove complete tasks.
             for t in remove:
                 running.remove(t)
-            # Wait 60 seconds before checking again.
-            sleep(60)
+            
 
     # Wait for any remaining tasks to be completed
     while len(running) > 0:
+        # Wait 60 seconds before checking again.
+        sleep(60)
+        
         # Check if jobs are 'Completed', if so mark as complete & queue for removal from running tasks list.
         remove = []
         for r in running:
@@ -106,9 +111,7 @@ def bulk_load(list_of_Experiment_objects, auth=None, task_limit=2):
         # Remove complete tasks.
         for t in remove:
             running.remove(t)
-        # Wait 60 seconds before checking again.
-        sleep(60)
-
+        
     # Print completion messages.
     print('[CoGe API] %s - INFO - INFO - Bulk experiment load complete. %s experiments loaded successfully.'
           % (datetime.now(), str(len(complete))))
