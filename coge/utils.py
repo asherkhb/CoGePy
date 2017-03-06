@@ -7,7 +7,8 @@ def valid_response(status_code):
         return True
     elif status_code == 201:
         return True
-
+    else:
+        return False
 
 def report_invalid_response(response):
     print("INVALID RESPONSE: %s" % str(response.status_code))

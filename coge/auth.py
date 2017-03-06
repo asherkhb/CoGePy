@@ -32,15 +32,5 @@ class AuthToken(object):
         raise NotImplementedError
 
     def refresh_token(self):
+        # Refresh a token
         raise NotImplementedError
-
-
-def authenticate(func, params):
-    """Authentication Decorator
-
-    :param func: Function which can benefit from authentication.
-    :return:
-    """
-    # TODO
-    # return func(params=PARAMS)
-    raise NotImplementedError
